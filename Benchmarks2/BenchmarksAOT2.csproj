@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworks>net10.0;</TargetFrameworks>
+    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PublishAot>true</PublishAot>
+    <IsAotCompatible>true</IsAotCompatible>
+  <IlcInstructionSet>sse2</IlcInstructionSet>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="BenchmarkDotNet.Artifacts\**" />
+    <EmbeddedResource Remove="BenchmarkDotNet.Artifacts\**" />
+    <None Remove="BenchmarkDotNet.Artifacts\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="System.Drawing.Common.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BenchmarkDotNet" Version="0.15.8" />
+    <PackageReference Include="System.IO.Hashing" Version="10.0.5" />
+    <!--<PackageReference Include="System.Memory" Version="4.6.3" />-->
+    <!--<PackageReference Include="microsoft.dotnet.ilcompiler" Version="10.0.5" />-->
+    <PackageReference Include="Microsoft.IO.RecyclableMemoryStream" Version="3.0.*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="NLog" Version="5.2.8" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <IlcGenerateMibc>true</IlcGenerateMibc>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="System.Drawing.Common.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BenchmarkDotNet" Version="0.15.8" />
+    <PackageReference Include="lz4net" Version="1.0.15.93" />
+    <PackageReference Include="Microsoft.IO.RecyclableMemoryStream" Version="3.0.*" />
+    <!--<PackageReference Include="System.Text.Json" Version="10.0.5" />-->
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ClassLibrary1\ClassLibraryForDeserialization.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TrimmerRootAssembly Include="ClassLibraryForDeserialization" />
+    <!--<RdXmlFile Include="D:\works\!Test\TestAOT\Benchmarks\rd.xml" />-->
+    <!--<TrimmerRootDescriptor Include="AotPreserve.xml" />-->
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="pnrs.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+
+
+</Project>

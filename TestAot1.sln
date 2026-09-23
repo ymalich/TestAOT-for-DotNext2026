@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 18
+VisualStudioVersion = 18.4.11620.152
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BenchmarksAOT", "Benchmarks\BenchmarksAOT.csproj", "{EE511099-EDA8-4D0C-9C80-DCB4EB94E92D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
+	ProjectSection(SolutionItems) = preProject
+		NuGet.config = NuGet.config
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibraryForDeserialization", "ClassLibrary1\ClassLibraryForDeserialization.csproj", "{166A0FDC-4778-4B36-9AD5-14E57210B52F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestAot2", "TestAot2\TestAot2.csproj", "{DA8FE355-2FCF-E110-0F2F-05132F02D308}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BenchmarksAOT2", "Benchmarks2\BenchmarksAOT2.csproj", "{252BA577-4FA6-4D53-27F0-3343079AF16C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReflectionSerialization", "docs\examples\ReflectionSerialization\ReflectionSerialization.csproj", "{48F360A7-7C06-546A-7D9D-FA22E7446CF4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EE511099-EDA8-4D0C-9C80-DCB4EB94E92D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE511099-EDA8-4D0C-9C80-DCB4EB94E92D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE511099-EDA8-4D0C-9C80-DCB4EB94E92D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE511099-EDA8-4D0C-9C80-DCB4EB94E92D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{166A0FDC-4778-4B36-9AD5-14E57210B52F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{166A0FDC-4778-4B36-9AD5-14E57210B52F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{166A0FDC-4778-4B36-9AD5-14E57210B52F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{166A0FDC-4778-4B36-9AD5-14E57210B52F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA8FE355-2FCF-E110-0F2F-05132F02D308}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA8FE355-2FCF-E110-0F2F-05132F02D308}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA8FE355-2FCF-E110-0F2F-05132F02D308}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA8FE355-2FCF-E110-0F2F-05132F02D308}.Release|Any CPU.Build.0 = Release|Any CPU
+		{252BA577-4FA6-4D53-27F0-3343079AF16C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{252BA577-4FA6-4D53-27F0-3343079AF16C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{252BA577-4FA6-4D53-27F0-3343079AF16C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{252BA577-4FA6-4D53-27F0-3343079AF16C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48F360A7-7C06-546A-7D9D-FA22E7446CF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48F360A7-7C06-546A-7D9D-FA22E7446CF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48F360A7-7C06-546A-7D9D-FA22E7446CF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48F360A7-7C06-546A-7D9D-FA22E7446CF4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C96C6BC6-3937-4198-9300-0B8B39F2C31D}
+	EndGlobalSection
+EndGlobal
