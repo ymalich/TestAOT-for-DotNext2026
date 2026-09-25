@@ -16,11 +16,11 @@ internal class Program
         // Balanced schema
         var guidFix = new Guid("381b4222-f694-41f0-9685-ff5bb260df2e");
 
-        ////var cpuName = GetProcessorName();
-        ////if (cpuName.Contains("Ryzen 5 5600U"))
-        ////{
-        ////    guidFix = new Guid("126bd836-ee9b-4b63-95cd-68448d8e5905"); // ryzen
-        ////}
+        var cpuName = GetProcessorName();
+        if (cpuName.Contains("Ryzen 5 5600U"))
+        {
+            guidFix = new Guid("126bd836-ee9b-4b63-95cd-68448d8e5905"); // ryzen
+        }
 
         var jobNet10Jit = NewJob
             .WithPowerPlan(guidFix)

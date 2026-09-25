@@ -293,7 +293,6 @@ public class LinqBenchmarks
         return total;
     }
 
-    int _x;
     [Benchmark(Description = "Deferred: Same query enumerated 3 times")]
     public int Deferred_Enumerate3Times()
     {

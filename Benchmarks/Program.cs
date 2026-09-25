@@ -20,13 +20,6 @@ internal class Program
         var pnrList = new PnrList { Pnrs = PnrFactory.CreateMany(1).ToArray() };
         var json = JsonSerializer.Serialize(pnrList, PnrListSourceGenerationContext.Default.PnrList);
 
-        /*
-        JsonSerializationBench jsonSerializationBench = new JsonSerializationBench();
-        jsonSerializationBench.Setup();
-        JsonSerializationSourceGenBench x = new();
-        x.Setup();
-        */
-
         // Balanced schema
         var guidFix = new Guid("381b4222-f694-41f0-9685-ff5bb260df2e");
 
@@ -36,27 +29,21 @@ internal class Program
             guidFix = new Guid("126bd836-ee9b-4b63-95cd-68448d8e5905"); // ryzen
         }
 
-        var jobNet10Jit = NewJob
+        var jobNet11Jit = NewJob
             .WithPowerPlan(guidFix)
-            .WithRuntime(CoreRuntime.Core10_0)
-            .WithId("NET 10.0 RyuJIT")
+            .WithRuntime(CoreRuntime.Core11_0)
+            .WithId("NET 11.0 RyuJIT")
             .WithAffinity(0x0001) // use only the first available processor
             .AsBaseline();
 
-        var config = DefaultConfig.Instance.AddJob(jobNet10Jit);
+        var config = DefaultConfig.Instance.AddJob(jobNet11Jit);
 
         {
-            var aotToolchainBase = NativeAotToolchain.CreateBuilder()
-                .UseNuGet()
-                .IlcInstructionSet("base")
-                .DisplayName("AOT base")
-                .TargetFrameworkMoniker("net10.0")
-                .ToToolchain();
+            var aotToolchainBase = CreateNativeAotToolchain("base");
 
             var jobAotBase = NewJob.WithToolchain(aotToolchainBase)
                 .WithId("1 AOT base")
                 .WithPowerPlan(guidFix)
-                .WithRuntime(NativeAotRuntime.Net10_0)
                 .WithAffinity(0x0001);
 
             config.AddJob(jobAotBase);
@@ -64,35 +51,11 @@ internal class Program
 
         if (RuntimeInformation.ProcessArchitecture == Architecture.X64)
         {
-            var aotToolchainSse4_2 = NativeAotToolchain.CreateBuilder()
-                .UseNuGet()
-                .IlcInstructionSet("avx")
-                .DisplayName("AOT sse4.2")
-                .TargetFrameworkMoniker("net10.0")
-                .ToToolchain();
-
-            var jobAotSse4_2 = NewJob.WithToolchain(aotToolchainSse4_2)
-                .WithId("2 AOT sse4.2")
-                .WithPowerPlan(guidFix)
-                .WithRuntime(NativeAotRuntime.Net10_0)
-                .WithAffinity(0x0001);
-
-            config.AddJob(jobAotSse4_2);
-        }
-
-        if (RuntimeInformation.ProcessArchitecture == Architecture.X64)
-        {
-            var aotToolchainAvx2 = NativeAotToolchain.CreateBuilder()
-               .UseNuGet()
-               .IlcInstructionSet("avx2")
-               .DisplayName("AOT avx2")
-               .TargetFrameworkMoniker("net10.0")
-               .ToToolchain();
+            var aotToolchainAvx2 = CreateNativeAotToolchain("avx2");
 
             var jobAotAvx2 = NewJob.WithToolchain(aotToolchainAvx2)
-                .WithId("3 AOT avx2")
+                .WithId("2 AOT avx2")
                 .WithPowerPlan(guidFix)
-                .WithRuntime(NativeAotRuntime.Net10_0)
                 .WithAffinity(0x0001);
 
             config.AddJob(jobAotAvx2);
@@ -100,20 +63,14 @@ internal class Program
 
         if (RuntimeInformation.ProcessArchitecture == Architecture.Arm64)
         {
-            var aotToolchainNative = NativeAotToolchain.CreateBuilder()
-                .UseNuGet()
-                .IlcInstructionSet("native")
-                .DisplayName("AOT native")
-                .TargetFrameworkMoniker("net10.0")
-                .ToToolchain();
+            var aotToolchainNative = CreateNativeAotToolchain("native");
 
             var jobAotNative = NewJob.WithToolchain(aotToolchainNative)
-                .WithId("4 AOT native")
+                .WithId("2 AOT native")
                 .WithPowerPlan(guidFix)
-                .WithRuntime(NativeAotRuntime.Net10_0)
                 .WithAffinity(0x0001);
 
-            // config.AddJob(jobAotNative);
+            config.AddJob(jobAotNative);
         }
 
         /*
@@ -143,6 +100,17 @@ internal class Program
         // BenchmarkRunner.Run<DictionaryBench>(config);
         // BenchmarkRunner.Run<AesBench>(config);
         // BenchmarkRunner.Run<MatrixMultiplication>(config);
+    }
+
+    private static CsProjNativeAotToolchain CreateNativeAotToolchain(string instructionSet)
+    {
+        return CsProjNativeAotToolchain.From(
+            NativeAotRuntime.Net11_0,
+            new NativeAotSettings
+            {
+                //InstructionSet = instructionSet,
+                TargetFrameworkMoniker = "net11.0"
+            });
     }
 
     private static string GetProcessorName()

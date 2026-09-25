@@ -3,8 +3,7 @@ using BenchmarkDotNet.Jobs;
 
 namespace Benchmarks;
 
-[SimpleJob(RuntimeMoniker.Net10_0)]
-[SimpleJob(RuntimeMoniker.NativeAot10_0)]
+
 [HideColumns("Error", "StdDev", "Median", "RatioSD")]
 //[DisassemblyDiagnoser(maxDepth: 0)]
 public class Pgo1
